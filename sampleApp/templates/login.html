@@ -1,0 +1,52 @@
+{% extends 'base4.html' %}
+{% load static %}
+
+<head> 
+    {% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/style_login_signup.css' %}">
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<div class="container">
+    <div class="row m50">
+        <div class="col-2">
+                <!-- 左端のコンテンツ（空白用） -->
+        </div>
+        <div class="col-8">
+            <div class="login_1">
+                <form method="POST">{% csrf_token %}
+                    <div class="row f50">
+                        {{ loginuser }}
+                    </div>
+                    <div class="row-4 f30 m50">
+                        ユーザー名:<input type="text" name="username">
+                    </div>
+                    <div class="row-4 f30 m50">
+                        パスワード:<input type="password" id="password" name="password" >
+                        <button type="button" onclick="togglePassword()">表示/非表示</button>
+                    </div>
+                    <div class="f30 m50">
+                        <button type="submit">送信</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-2">
+            <!-- 左端のコンテンツ（空白用） -->
+        </div>
+    </div>
+</div>
+<script>
+    function togglePassword() {
+        var passwordField = document.getElementById('password');
+        if (passwordField.type === 'password') {
+            passwordField.type = 'text';
+        } else {
+            passwordField.type = 'password';
+        }
+    }
+</script>
+{% endblock %}
+</body>
+
