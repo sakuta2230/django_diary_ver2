@@ -1,0 +1,60 @@
+{% extends 'base4.html' %}
+{% load static %}
+<head>
+    {% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/style_login_signup.css' %}">
+    {% endblock %}
+</head>
+<body>
+{% block content %}
+<div class="container">
+    <div class="row m50">
+        <div class="col-2">
+            <!-- 左端のコンテンツ（空白用） -->
+        </div>
+        <div class="col-8">
+            <div class="login_1">
+                <form method="POST">{% csrf_token %}
+                    <div class="row f50">
+                        {{ signinuser }}
+                        {% if error %}
+                            <p class="error">{{ error }}</p>
+                        {% elif success %}
+                            <p class="success">{{ success }}</p>
+                        {% endif %}
+                    </div>
+                    <div class="row-4 f30 m50">
+                        ユーザー名:<input type="text" name="username" required>
+                    </div>
+                    <div class="row-4 f30 m50">
+                        パスワード:<input type="password" id="password1" name="password1" required class="password-field">
+                        <button type="button" onclick="togglePassword()">表示/非表示</button>
+                    </div>
+                    <div class="row-4 f30 m50">
+                        パスワード（確認）:<input type="password" id="password2" name="password2" required class="password-field">
+                    </div>
+                    <div class="f30 m50">
+                        <button type="submit">送信</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-2">
+            <!-- 左端のコンテンツ（空白用） -->
+        </div>
+    </div>
+</div>
+{% endblock %}
+<script>
+    function togglePassword() {
+        const passwordFields = document.querySelectorAll('.password-field');
+        passwordFields.forEach(field => {
+            if (field.type === 'password') {
+                field.type = 'text';
+            } else {
+                field.type = 'password';
+            }
+        });
+    }
+</script>
+</body>
