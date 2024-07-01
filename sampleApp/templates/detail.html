@@ -1,0 +1,104 @@
+{% extends 'base4.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日記詳細</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base4.css' %}">
+</head>
+
+<body>
+    <header>
+        {% block headercontent %}
+        <div class="container">
+            <div class="row m50">
+                <div class="col">
+                    日記詳細
+                </div>
+            </div>
+        </div>
+        {% endblock %} 
+    </header>
+    <main>    
+        {% block content %}
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <!-- 左端のコンテンツ（空白用） -->
+                </div>
+                <div class="col-8">
+                    <!-- 中央のコンテンツ（中央用） -->
+                    <div class="m20">
+                        <label for="title">タイトル:</label>
+                        <input type="text" id="title" name="title" class="form-control" value="{{ object.title }}" readonly>
+                    </div>
+                    <div class="m20">
+                        <label for="work_text">仕事の内容:</label>
+                        <textarea id="work_text" name="work_text" class="form-control" readonly>{{ object.work_text }}</textarea>
+                    </div>
+                    <div class="m20">
+                        <label for="private_text">プライベートの内容:</label>
+                        <textarea id="private_text" name="private_text" class="form-control" readonly>{{ object.private_text }}</textarea>
+                    </div>
+                    <div class="m20">
+                        <label for="date">日付:</label>
+                        <input type="date" id="date" name="date" value="{{ object.date|date:'Y-m-d' }}" disabled>
+                    </div>
+                    <div class="m20">
+                        <label for="sleep_duration">睡眠時間:</label>
+                        <input type="number" id="sleep_duration" name="sleep_duration" value="{{ object.sleep_duration }}" readonly>(時間)
+                    </div>
+                    <div class="m20">
+                        <label for="work_system">勤務体系:</label>
+                        <input type="text" id="work_system" name="work_system" value="{{ object.get_work_system_display }}" readonly>
+                    </div>
+                    <div class="m20">
+                        <label for="expenditure">支出:</label>
+                        <input type="number" id="expenditure" name="expenditure" value="{{ object.expenditure }}" readonly>(千円)
+                    </div>
+                    <div class="m20">
+                        <label for="overall_mood">全体の気分:</label>
+                        <input type="number" id="overall_mood" name="overall_mood" value="{{ object.overall_mood }}" readonly>(悪0~10良)
+                    </div>
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center m20">
+                                <a href="{% url 'edit' article_id=object.pk %}" class="btn btn-primary">編集</a>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center m20">
+                                <a href="{% url 'delete_article' article_id=object.pk %}" class="btn btn-danger">削除</a> <!-- 削除ボタン追加 -->
+                            </div>
+                        </div>
+                        
+                        <div class="col-4">
+                            <div class="d-flex justify-content-center m20">
+                                <a href="{% url 'list' %}" class="btn btn-secondary">戻る</a>
+                            </div>
+                        </div>
+                    </div>
+                    <h2>コメント:</h2>
+                    {% for comment in object.comments.all %}
+                        <div class="m20">
+                            <p>{{ comment.comment }}</p>
+                        </div>
+                    {% endfor %}
+                    <div class="m20">
+                        <a href="{% url 'comment' article_id=object.pk %}" class="btn btn-success">コメントを入力する</a>
+                    </div>
+                    <div class="m20">
+                        <a href="{% url 'score1' article_id=object.pk %}" class="btn btn-info">翻訳してスコアを出す</a>
+                    </div>
+                </div>
+                <div class="col-2">
+                    <!-- 右端のコンテンツ（空白用） -->
+                </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+</body>
+</html>
