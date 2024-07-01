@@ -1,0 +1,92 @@
+{% extends "base4.html" %}
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    {% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/style3.css' %}">
+    {% endblock %}
+</head>
+<body>
+    <header>
+        {% block headercontent %}
+        <div class="container">
+            <div class="row m50">
+                <div class="col">
+                    日記リスト
+                </div>
+            </div>
+        </div>
+        {% endblock %} 
+    </header>
+    <main>
+        {% block content %}
+        <div class="container my-3">
+            <div class="row mb-2">
+                <div class="col-md-8">
+                    <div class="row">
+                        {% for item in published_articles %}
+                        <div class="col-md-6 mb-4">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h2 class="card-title fs-3 fst-italic">
+                                        <a href="{% url 'detail' article_id=item.pk %}" class="text-decoration-none">{{item.title}}</a>
+                                    </h2>
+                                    <p class="card-text">{{item.date}} / 健康スコア {{item.health_score.total_score}}</p>
+                                </div>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-md-4"> 
+                    <div class="f30 tc bg-g">
+                        <a href="{% url 'creatediary' %}" class="navbar-brand fst-italic">日記を投稿する</a>
+                    </div>
+                    <div class="container-fluid mb-3">
+                        <form action="#" class="d-flex">
+                            <input type="text" class="form-control me-2" placeholder="検索するテキストを入力">
+                            <button type="submit" class="btn btn-outline-success">検索</button>
+                        </form>
+                    </div>
+                    <div class="p-4">
+                        <h2 class="fs-3 fst-italic">RECENT POST <span class="ms-2 fs-6">最新記事</span></h2>
+                        <hr>
+                        <ol class="list-unstyled">
+                            {% for item in published_articles %}
+                            <li>
+                                <a href="#" class="text-decoration-none">
+                                    <span class="ms-2">{{item.title}}</span>
+                                </a>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </div>
+                </div>
+            </div>
+            <div class="row mb-2">
+                <div class="col-md-8">
+                    <div class="row">
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endblock %} 
+    </main>
+    <footer id="page-footer" class="bg-dark text-white text-center p-4 fx w100">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>2023</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>
