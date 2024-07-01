@@ -1,0 +1,70 @@
+{% extends "base4.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日記作成</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/base4.css' %}">
+</head>
+<body>
+    <header>
+        {% block headercontent %}
+        <div class="container">
+            <div class="row m50">
+                <div class="col">
+                    日記作成
+                </div>
+            </div>
+        </div>
+        {% endblock %} 
+    </header>
+    <main>    
+        {% block content %}
+        <div class="container">
+            <div class="row">
+              <div class="col-2">
+                <!-- 左端のコンテンツ（空白用） -->
+              </div>
+              <div class="col-8">
+                <!-- 中央のコンテンツ（中央用） -->
+                <form method="post">
+                    {% csrf_token %}
+                    <label for="title">タイトル:</label>
+                    <input type="text" id="title" name="title" required><br><br>
+                    <label for="work_text">仕事の内容:</label>
+                    <textarea id="work_text" name="work_text" required></textarea><br><br>
+                    <label for="private_text">プライベートの内容:</label>
+                    <textarea id="private_text" name="private_text" required></textarea><br><br>
+                    <label for="date">日付:</label>
+                    <input type="date" id="date" name="date" required><br><br>
+                    <label for="sleep_duration">睡眠時間:</label>
+                    <input type="number" id="sleep_duration" name="sleep_duration" min="0" max="12" required><br><br>
+                    <label for="work_system">勤務体系:</label>
+                    <select id="work_system" name="work_system" required>
+                        <option value="出勤">出勤</option>
+                        <option value="出張">出張</option>
+                        <option value="テレワーク">テレワーク</option>
+                        <option value="休み">休み</option>
+                    </select><br><br>
+                    <label for="expenditure">支出:</label>
+                    <input type="number" id="expenditure" name="expenditure" min="0" max="50" required><br><br>
+                    <label for="overtime_hours">残業時間:</label>
+                    <input type="number" id="overtime_hours" name="overtime_hours" min="0" max="24" required><br><br>
+                    <label for="overall_mood">全体の気分:</label>
+                    <input type="number" id="overall_mood" name="overall_mood" min="0" max="10" required><br><br>
+                    <label for="save_in_progress">下書きとして保存:</label>
+                    <input type="checkbox" id="save_in_progress" name="save_in_progress"><br><br>
+                    <button type="submit">送信</button>
+                </form>
+              </div>
+              <div class="col-2">
+                <!-- 右端のコンテンツ（空白用） -->
+              </div>
+            </div>
+        </div>
+        {% endblock %}
+    </main>
+</body>
+</html>
