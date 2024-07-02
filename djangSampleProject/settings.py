@@ -77,16 +77,19 @@ WSGI_APPLICATION = 'djangSampleProject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES =  {
+from decouple import config
+
+DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'djangosample',
-        'USER': 'postgres',
-        'PASSWORD': 'saku2238',
-        'HOST': 'db',
-        'PORT': 5432,
+        'ENGINE': config('DATABASE_ENGINE'),
+        'NAME': config('DATABASE_NAME'),
+        'USER': config('DATABASE_USER'),
+        'PASSWORD': config('DATABASE_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT'),
     }
 }
+
 
 
 # Password validation
