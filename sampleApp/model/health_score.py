@@ -2,7 +2,7 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 from .article1 import article
-from sampleApp.views.weather import calculate_health_score
+from sampleApp.views.weather_view import calculate_health_score
 from afinn import Afinn
 
 class HealthScore(models.Model):
