@@ -6,7 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日記詳細</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/base4.css' %}">
+
+    {% block extracss %}
+    <link rel="stylesheet" href="{% static 'css/detail.css' %}">
+    {% endblock %}
 </head>
 
 <body>
@@ -80,18 +83,10 @@
                             </div>
                         </div>
                     </div>
-                    <h2>コメント:</h2>
-                    {% for comment in object.comments.all %}
-                        <div class="m20">
-                            <p>{{ comment.comment }}</p>
-                        </div>
-                    {% endfor %}
-                    <div class="m20">
-                        <a href="{% url 'comment' article_id=object.pk %}" class="btn btn-success">コメントを入力する</a>
-                    </div>
-                    <div class="m20">
-                        <a href="{% url 'score1' article_id=object.pk %}" class="btn btn-info">翻訳してスコアを出す</a>
-                    </div>
+                    
+                    
+                        
+                    
                 </div>
                 <div class="col-2">
                     <!-- 右端のコンテンツ（空白用） -->
@@ -102,3 +97,4 @@
     </main>
 </body>
 </html>
+
