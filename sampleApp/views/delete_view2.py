@@ -9,4 +9,4 @@ def delete_article(request, article_id):
         article_instance.delete()
         return redirect('list')
 
-    return render(request, 'confirm_delete.html', {'object': article_instance})
+    return render(request, 'confirm_delete2.html', {'object': article_instance})
