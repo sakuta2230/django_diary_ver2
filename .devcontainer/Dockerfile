@@ -8,7 +8,7 @@ ENV PYTHONUNBUFFERED 1
 WORKDIR /app
 
 # requirements.txt をコンテナにコピー
-COPY requirements.txt .
+COPY ../requirements.txt .
 
 # パッケージのインストール
 RUN pip install --no-cache-dir -r requirements.txt
