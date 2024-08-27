@@ -5,7 +5,7 @@ FROM python:3
 ENV PYTHONUNBUFFERED 1
 
 # 作業ディレクトリを作成し、そこに移動
-WORKDIR /app
+WORKDIR /workspace
 
 # requirements.txt をコンテナにコピー
 COPY ../requirements.txt .
