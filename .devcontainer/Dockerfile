@@ -7,14 +7,8 @@ ENV PYTHONUNBUFFERED 1
 # 作業ディレクトリを作成し、そこに移動
 WORKDIR /workspace
 
-# requirements.txt をコンテナにコピー
-COPY ../requirements.txt .
-
-# パッケージのインストール
+# パッケージのインストール（ホストのファイルをマウントするので COPY は不要）
 RUN pip install --no-cache-dir -r requirements.txt
-
-# 残りのアプリケーションファイルをコンテナにコピー
-COPY . .
 
 # アプリケーションを起動するコマンド
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
