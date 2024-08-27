@@ -2,12 +2,15 @@ version: '3'
 
 services:
   web:
-    build: ..
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
     tty: true
     volumes:
       - ../:/workspace
     depends_on:
       - db
+
 
   db:
     image: postgres
