@@ -8,6 +8,8 @@ services:
     tty: true
     volumes:
       - ../:/workspace
+    ports:
+      - "8000:8000"  # ホストのポート8000をコンテナのポート8000にマッピング
     depends_on:
       - db
 
