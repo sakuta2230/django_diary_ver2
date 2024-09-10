@@ -1,6 +1,6 @@
 from .views import detail_view2,list2, login_view2,signup_view2,logout_view2
 from .views import creatediary_view2,dummy_view2
-from .views import edit_view2,dashboard_view,draft_view,delete_view2,wordcloud
+from .views import edit_view2,dashboard_view,draft_view,delete_view2,wordcloud,rule
 from django.urls import path
 app='sampleApp'
 urlpatterns=[
@@ -15,7 +15,8 @@ urlpatterns=[
    path('dashboard',dashboard_view.display_dashboard,name='dashboard'),
    path('draft',draft_view.draft_articles_view,name='draft'),
    path('article/<int:article_id>/delete/', delete_view2.delete_article, name='delete_article'),
-   path('wordcloud',wordcloud.generate_wordcloud,name='wordcloud')
+   path('wordcloud',wordcloud.generate_wordcloud,name='wordcloud'),
+   path('rule',rule.rule_view,name='rule')
 
 ]
 
