@@ -1,133 +1,130 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>相関分析ダッシュボード</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
-</head>
-<body>
-    <div class="container-fluid">
-        <!-- ヘッダー -->
-        <header class="row bg-dark text-white p-3">
-            <div class="col">
-                <h1>相関分析ダッシュボード</h1>
-            </div>
-        </header>
+{% extends 'base4.html' %}
+{% load static %}
 
-        <!-- サイドバー -->
-        <div class="row">
-            <nav class="col-md-2 bg-light sidebar">
-                <div class="sidebar-sticky">
-                    <h5>フィルタ</h5>
-                    <form method="get" id="filterForm">
-                        <div class="form-group">
-                            <label for="variableSelect">変数を選択:</label>
-                            <select class="form-control" id="variableSelect" name="variable">
-                                <option value="work_text_score">勤務テキストスコア</option>
-                                <option value="weather_score">天候スコア</option>
-                                <option value="work_system_score">勤務体系スコア</option>
-                                <option value="expenditure_score">出費スコア</option>
-                                <option value="sleep_duration_score">睡眠時間スコア</option>
-                            </select>
-                        </div>
-                        <button type="submit" class="btn btn-primary">更新</button>
-                    </form>
-                    <!-- ここにWordCloudのリンクを追加 -->
-                    <div class="mt-4">
-                        <a href="{% url 'wordcloud' %}" class="btn btn-secondary btn-block">WordCloudを表示</a>
-                    </div>
-                </div>
-            </nav>
+{% block extracss %}
+<!-- 追加のCSSが必要であればここに記述 -->
+{% endblock %}
 
-            <!-- メインコンテンツエリア -->
-            <main class="col-md-10 ml-sm-auto">
-                <div class="pt-3 pb-2 mb-3">
-                    <h2>最新の日記</h2>
-                    <div class="card text-white bg-secondary mb-3">
-                        <div class="card-header">最新の日記の目的変数</div>
-                        <div class="card-body">
-                            <h5 class="card-title" id="latestOverallMood">{{ latest_overall_mood }}</h5>
-                            <p>平均値と比べて{{ latest_overall_mood_percentage }}%低いです。</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="pt-3 pb-2 mb-3">
-                    <h2>目的変数の概要</h2>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <div class="card text-white bg-info mb-3">
-                                <div class="card-header">平均値</div>
-                                <div class="card-body">
-                                    <h5 class="card-title" id="meanValue">{{ mean_value }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card text-white bg-success mb-3">
-                                <div class="card-header">中央値</div>
-                                <div class="card-body">
-                                    <h5 class="card-title" id="medianValue">{{ median_value }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card text-white bg-danger mb-3">
-                                <div class="card-header">最大値</div>
-                                <div class="card-body">
-                                    <h5 class="card-title" id="maxValue">{{ max_value }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card text-white bg-warning mb-3">
-                                <div class="card-header">最小値</div>
-                                <div class="card-body">
-                                    <h5 class="card-title" id="minValue">{{ min_value }}</h5>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="pt-3 pb-2 mb-3">
-                    <h2>目的変数のヒストグラム</h2>
-                    <div id="histogram">{{ histogram_html|safe }}</div>
-                </div>
-
-                <div class="pt-3 pb-2 mb-3">
-                    <h2>目的変数を大きくするには</h2>
-                    <p>以下の変数を調整してください:</p>
-                    <ul>
-                        <li>{{ top_variable_1 }}: {{ top_variable_1_action }}</li>
-                        <li>{{ top_variable_2 }}: {{ top_variable_2_action }}</li>
-                        <li>{{ top_variable_3 }}: {{ top_variable_3_action }}</li>
-                    </ul>
-                </div>
-
-                <div class="pt-3 pb-2 mb-3">
-                    <h2>相関の高い変数</h2>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <div id="scatterPlot1">{{ scatter_plot_1_html|safe }}</div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div id="scatterPlot2">{{ scatter_plot_2_html|safe }}</div>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <div id="scatterPlot3">{{ scatter_plot_3_html|safe }}</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="pt-3 pb-2 mb-3">
-                    <h2>選択した変数との散布図</h2>
-                    <div id="selectedScatterPlot">{{ selected_scatter_plot_html|safe }}</div>
-                </div>
-                
-                
-            </main>
-        </div>
+{% block headercontent %}
+<header class="row bg-dark text-white p-3">
+    <div class="col">
+        <h1>相関分析ダッシュボード</h1>
     </div>
-</body>
-</html>
+</header>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <!-- サイドバー -->
+        <nav class="col-md-2 bg-light sidebar">
+            <div class="sidebar-sticky">
+                <h5>フィルタ</h5>
+                <form method="get" id="filterForm">
+                    <div class="form-group">
+                        <label for="variableSelect">変数を選択:</label>
+                        <select class="form-control" id="variableSelect" name="variable">
+                            <option value="work_text_score">勤務テキストスコア</option>
+                            <option value="weather_score">天候スコア</option>
+                            <option value="work_system_score">勤務体系スコア</option>
+                            <option value="expenditure_score">出費スコア</option>
+                            <option value="sleep_duration_score">睡眠時間スコア</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">更新</button>
+                </form>
+                <div class="mt-4">
+                    <a href="{% url 'wordcloud' %}" class="btn btn-secondary btn-block">WordCloudを表示</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- メインコンテンツエリア -->
+        <main class="col-md-10 ml-sm-auto">
+            <div class="pt-3 pb-2 mb-3">
+                <h2>最新の日記</h2>
+                <div class="card text-white bg-secondary mb-3">
+                    <div class="card-header">最新の日記の目的変数</div>
+                    <div class="card-body">
+                        <h5 class="card-title" id="latestOverallMood">{{ latest_overall_mood }}</h5>
+                        <p>平均値と比べて{{ latest_overall_mood_percentage }}%低いです。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3 pb-2 mb-3">
+                <h2>目的変数の概要</h2>
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="card text-white bg-info mb-3">
+                            <div class="card-header">平均値</div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="meanValue">{{ mean_value }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-success mb-3">
+                            <div class="card-header">中央値</div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="medianValue">{{ median_value }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-danger mb-3">
+                            <div class="card-header">最大値</div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="maxValue">{{ max_value }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card text-white bg-warning mb-3">
+                            <div class="card-header">最小値</div>
+                            <div class="card-body">
+                                <h5 class="card-title" id="minValue">{{ min_value }}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3 pb-2 mb-3">
+                <h2>目的変数のヒストグラム</h2>
+                <div id="histogram">{{ histogram_html|safe }}</div>
+            </div>
+
+            <div class="pt-3 pb-2 mb-3">
+                <h2>目的変数を大きくするには</h2>
+                <p>以下の変数を調整してください:</p>
+                <ul>
+                    <li>{{ top_variable_1 }}: {{ top_variable_1_action }}</li>
+                    <li>{{ top_variable_2 }}: {{ top_variable_2_action }}</li>
+                    <li>{{ top_variable_3 }}: {{ top_variable_3_action }}</li>
+                </ul>
+            </div>
+
+            <div class="pt-3 pb-2 mb-3">
+                <h2>相関の高い変数</h2>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <div id="scatterPlot1">{{ scatter_plot_1_html|safe }}</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div id="scatterPlot2">{{ scatter_plot_2_html|safe }}</div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <div id="scatterPlot3">{{ scatter_plot_3_html|safe }}</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-3 pb-2 mb-3">
+                <h2>選択した変数との散布図</h2>
+                <div id="selectedScatterPlot">{{ selected_scatter_plot_html|safe }}</div>
+            </div>
+        </main>
+    </div>
+</div>
+{% endblock %}
