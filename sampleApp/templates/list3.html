@@ -1,7 +1,7 @@
 {% extends "base4.html" %}
 {% load static %}
-<!DOCTYPE html>
 
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -9,6 +9,21 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
     {% block extracss %}
     <link rel="stylesheet" href="{% static 'css/style3.css' %}">
+    <style>
+        .post-diary-btn {
+            background-color: #ffc107; /* ボタンの背景色 */
+            padding: 10px; /* パディング */
+            text-align: center; /* テキストを中央に */
+            display: block; /* ブロック表示にして全体をクリック可能に */
+        }
+        .post-diary-btn a {
+            color: #000; /* テキスト色 */
+            text-decoration: none; /* 下線を除去 */
+        }
+        .post-diary-btn:hover {
+            background-color: #ffdd57; /* ホバー時の背景色 */
+        }
+    </style>
     {% endblock %}
 </head>
 <body>
@@ -43,15 +58,9 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div class="col-md-4"> 
-                    <div class="f30 tc bg-g">
+                <div class="col-md-4">
+                    <div class="post-diary-btn">
                         <a href="{% url 'creatediary' %}" class="navbar-brand fst-italic">日記を投稿する</a>
-                    </div>
-                    <div class="container-fluid mb-3">
-                        <form action="#" class="d-flex">
-                            <input type="text" class="form-control me-2" placeholder="検索するテキストを入力">
-                            <button type="submit" class="btn btn-outline-success">検索</button>
-                        </form>
                     </div>
                     <div class="p-4">
                         <h2 class="fs-3 fst-italic">RECENT POST <span class="ms-2 fs-6">最新記事</span></h2>
@@ -59,7 +68,7 @@
                         <ol class="list-unstyled">
                             {% for item in published_articles %}
                             <li>
-                                <a href="#" class="text-decoration-none">
+                                <a href="{% url 'detail' article_id=item.pk %}" class="text-decoration-none">
                                     <span class="ms-2">{{item.title}}</span>
                                 </a>
                             </li>
@@ -71,7 +80,7 @@
             <div class="row mb-2">
                 <div class="col-md-8">
                     <div class="row">
-                       
+                        <!-- 他のコンテンツがあればここに記述 -->
                     </div>
                 </div>
             </div>
