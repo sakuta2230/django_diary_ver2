@@ -41,10 +41,11 @@ def calculate_and_save_health_score(article_instance):
 
     overtime_hours_score = min(float(article_instance.overtime_hours) * 0.4, 10)  # 0から10の範囲に制限
 
-    total_score = (work_text_score + private_text_score + weather_score + work_system_score +
-                   expenditure_score + sleep_duration_score + overtime_hours_score)
-    
-    total_score = round(total_score, 1)
+    total_score = round(
+    work_text_score + private_text_score + weather_score + work_system_score +
+    expenditure_score + sleep_duration_score + overtime_hours_score, 1
+    )
+
 
     health_score_instance, created = HealthScore.objects.get_or_create(
         article=article_instance,
