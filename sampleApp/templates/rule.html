@@ -5,7 +5,7 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <h1 class="f30">スコア計算ルール</h1>
+            <h1 class="f30" style="font-size: 48px;">スコア計算ルール</h1> <!-- h1タグのフォントサイズを48pxに設定 -->
         </div>
     </div>
 </div>
@@ -15,35 +15,35 @@
 <div class="container ma">
     <div class="row">
         <div class="col">
-            <h2 class="f20">総合スコア (total_score) の計算方法</h2>
-            <p>このスクリプトでは、<strong>total_score（総合スコア）</strong>は複数の要素から計算されています。各要素は、0から10の範囲に制限され、それぞれのスコアが加算されて最終的な総合スコアとなります。計算の流れは以下の通りです：</p>
+            <h2 class="f20" style="font-size: 36px;">総合スコア (total_score) の計算方法</h2> <!-- h2タグのフォントサイズを36pxに設定 -->
+            <p style="font-size: 18px;">このスクリプトでは、<strong>total_score（総合スコア）</strong>は複数の要素から計算されています。各要素は、0から10の範囲に制限され、それぞれのスコアが加算されて最終的な総合スコアとなります。計算の流れは以下の通りです：</p>
             
-            <h3 class="f20">1. 勤務テキストスコア (work_text_score)</h3>
-            <p>Afinn（感情分析ライブラリ）を使って、記事に含まれる勤務テキストのスコアを算出します。そのスコアに2倍を掛けて、0から10の範囲に収めています。</p>
+            <h3 class="f20" style="font-size: 30px;">1. 勤務テキストスコア (work_text_score)</h3> <!-- h3タグのフォントサイズを30pxに設定 -->
+            <p style="font-size: 18px;">Afinn（感情分析ライブラリ）を使って、記事に含まれる勤務テキストのスコアを算出します。そのスコアに2倍を掛けて、0から10の範囲に収めています。</p>
             
-            <h3 class="f20">2. プライベートテキストスコア (private_text_score)</h3>
-            <p>同様に、プライベートテキストもAfinnを使ってスコアを算出し、2倍して0から10の範囲に制限しています。</p>
+            <h3 class="f20" style="font-size: 30px;">2. プライベートテキストスコア (private_text_score)</h3>
+            <p style="font-size: 18px;">同様に、プライベートテキストもAfinnを使ってスコアを算出し、2倍して0から10の範囲に制限しています。</p>
             
-            <h3 class="f20">3. 天候スコア (weather_score)</h3>
-            <p><code>calculate_health_score</code> 関数を使用して温度と湿度に基づいたスコアを算出し、その結果を10で割って0から10の範囲に制限します。</p>
+            <h3 class="f20" style="font-size: 30px;">3. 天候スコア (weather_score)</h3>
+            <p style="font-size: 18px;"><code>calculate_health_score</code> 関数を使用して温度と湿度に基づいたスコアを算出し、その結果を10で割って0から10の範囲に制限します。</p>
             
-            <h3 class="f20">4. 勤務体系スコア (work_system_score)</h3>
-            <p>勤務形態に応じてスコアが決まります。具体的には「出勤」が3点、「出張」が1点、「テレワーク」が5点、「休み」が10点というスコア設定です。</p>
+            <h3 class="f20" style="font-size: 30px;">4. 勤務体系スコア (work_system_score)</h3>
+            <p style="font-size: 18px;">勤務形態に応じてスコアが決まります。具体的には「出勤」が3点、「出張」が1点、「テレワーク」が5点、「休み」が10点というスコア設定です。</p>
             
-            <h3 class="f20">5. 出費スコア (expenditure_score)</h3>
-            <p>記事に含まれる出費額を0.2倍し、その結果を0から10の範囲に制限しています。</p>
+            <h3 class="f20" style="font-size: 30px;">5. 出費スコア (expenditure_score)</h3>
+            <p style="font-size: 18px;">記事に含まれる出費額を0.2倍し、その結果を0から10の範囲に制限しています。</p>
             
-            <h3 class="f20">6. 全体的な気分スコア (overall_mood_score)</h3>
-            <p>記事に含まれる全体的な気分のスコアをそのまま使用し、0から10の範囲に制限しています。</p>
+            <h3 class="f20" style="font-size: 30px;">6. 全体的な気分スコア (overall_mood_score)</h3>
+            <p style="font-size: 18px;">記事に含まれる全体的な気分のスコアをそのまま使用し、0から10の範囲に制限しています。</p>
             
-            <h3 class="f20">7. 睡眠時間スコア (sleep_duration_score)</h3>
-            <p>記事に記載された睡眠時間に0.83を掛けてスコアを計算し、0から10の範囲に制限しています。</p>
+            <h3 class="f20" style="font-size: 30px;">7. 睡眠時間スコア (sleep_duration_score)</h3>
+            <p style="font-size: 18px;">記事に記載された睡眠時間に0.83を掛けてスコアを計算し、0から10の範囲に制限しています。</p>
             
-            <h3 class="f20">8. 残業時間スコア (overtime_hours_score)</h3>
-            <p>記事に含まれる残業時間に0.4を掛けてスコアを計算し、0から10の範囲に制限しています。</p>
+            <h3 class="f20" style="font-size: 30px;">8. 残業時間スコア (overtime_hours_score)</h3>
+            <p style="font-size: 18px;">記事に含まれる残業時間に0.4を掛けてスコアを計算し、0から10の範囲に制限しています。</p>
             
-            <h3 class="f20">9. 総合スコアの計算 (total_score)</h3>
-            <p>これら8つのスコアをすべて加算して <strong>total_score（総合スコア）</strong> を算出しています。</p>
+            <h3 class="f20" style="font-size: 30px;">9. 総合スコアの計算 (total_score)</h3>
+            <p style="font-size: 18px;">これら8つのスコアをすべて加算して <strong>total_score（総合スコア）</strong> を算出しています。</p>
         </div>
     </div>
 </div>
