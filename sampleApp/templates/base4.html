@@ -7,78 +7,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/base4.css' %}">
     <title>分析日記</title>
-    <style>
-        .ma {
-          margin-top: 50px; /* 上部に100pxのマージンを設定 */
-        }
-        .m5{
-            margin-top:5px
-        }
-        .tc{
-            text-align: center; /* テキストをセンター揃え */
-        }
-        .b1{
-            border: 1px solid black; /* 境界線を追加 */
-        }
-        .f50{
-            font-size: 50px; /* テキストの文字サイズを50pxに設定 */
-        }
-        .f30{
-            font-size: 30px; /* テキストの文字サイズを30pxに設定 */
-        }
-        .f20{
-            font-size: 20px; /* テキストの文字サイズを20pxに設定 */
-        }
-        .bg-a{
-            background-color: aqua;
-        }
-        .pd-20{
-            padding: 20px;
-        }
-        .ff-F{
-            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-
-        .col-12{
-        text-align: center; /* テキストをセンター揃え */
-        border: 1px solid black; /* 境界線を追加 */
-        font-size: 30px; /* テキストの文字サイズを20pxに設定 */
-        }
-        .col-4 {
-        text-align: center; /* テキストをセンター揃え */
-        border: 1px solid black; /* 境界線を追加 */
-        font-size: 20px; /* テキストの文字サイズを20pxに設定 */
-        background-color: aqua;
-        padding: 20px;
-        }
-        .col{
-        text-align: center; /* テキストをセンター揃え */
-        font-size: 30px; /* テキストの文字サイズを20pxに設定 */
-        font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        }
-        .link{
-        text-align: center; /* テキストをセンター揃え */
-        font-size: 50px; /* テキストの文字サイズを20pxに設定 */
-        }
-        .fx{
-            position: fixed;
-        }
-        .w100{
-            width: 100%;
-        }
-        #page-footer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background-color: #343a40; /* フッターの背景色 */
-            color: white; /* フッターテキストの色 */
-            text-align: center;
-            padding: 20px 0; /* 上下の余白 */
-            z-index: 9999; /* 他の要素よりも手前に表示 */
-        }
-    </style>
+   
     {% block extracss %}{% endblock %}
 </head>
 
