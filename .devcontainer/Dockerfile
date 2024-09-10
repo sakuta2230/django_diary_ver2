@@ -7,6 +7,9 @@ ENV PYTHONUNBUFFERED 1
 # 作業ディレクトリを作成し、そこに移動
 WORKDIR /workspace
 
+# 必要なシステムパッケージをインストール
+RUN apt-get update && apt-get install -y fonts-ipafont-gothic
+
 # ホストからコンテナに requirements.txt をコピーする
 COPY ../requirements.txt .
 
