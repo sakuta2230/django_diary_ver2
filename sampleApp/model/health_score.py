@@ -43,6 +43,8 @@ def calculate_and_save_health_score(article_instance):
 
     total_score = (work_text_score + private_text_score + weather_score + work_system_score +
                    expenditure_score + sleep_duration_score + overtime_hours_score)
+    
+    total_score = round(total_score, 1)
 
     health_score_instance, created = HealthScore.objects.get_or_create(
         article=article_instance,
