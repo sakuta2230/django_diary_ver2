@@ -54,12 +54,12 @@
         {% endblock %}
     </header>
 
-    <main style="min-height: calc(100vh - 200px);"> <!-- コンテンツ領域が足りない場合も、フッターが重ならないようにする -->
+    <main style="min-height: calc(100vh - 200px); padding-bottom: 100px;"> <!-- 100pxの余白をフッターのために追加 -->
         {% block content %}
         {% endblock %}
     </main>
 
-    <footer id="page-footer" class="bg-dark text-white text-center p-4 w100"> <!-- position: fixed を削除 -->
+    <footer id="page-footer" class="bg-dark text-white text-center p-4 w100" style="height: 100px;"> <!-- 高さを明示的に設定 -->
         <div class="container">
             <div class="row">
                 <div class="col">
