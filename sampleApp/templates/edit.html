@@ -9,7 +9,6 @@
     <link rel="stylesheet" type="text/css" href="{% static 'css/base4.css' %}">
 </head>
 
-
 <body>
     <header>
         {% block headercontent %}
@@ -36,29 +35,38 @@
 
             {% csrf_token %}
             <label for="title">タイトル:</label>
-            <input type="text" id="title" name="title" value="{{ object.title }}" required><br><br>
+            <input type="text" id="title" name="title" value="{{ object.title }}" required> <span>（例: プロジェクト進捗）</span><br><br>
+
             <label for="work_text">仕事の内容:</label>
-            <textarea id="work_text" name="work_text" required>{{ object.work_text }}</textarea><br><br>
+            <textarea id="work_text" name="work_text" required>{{ object.work_text }}</textarea> <span>（今日の仕事の詳細）</span><br><br>
+
             <label for="private_text">プライベートの内容:</label>
-            <textarea id="private_text" name="private_text" required>{{ object.private_text }}</textarea><br><br>
+            <textarea id="private_text" name="private_text" required>{{ object.private_text }}</textarea> <span>（プライベートの出来事）</span><br><br>
+
             <label for="date">日付:</label>
-            <input type="date" id="date" name="date" value="{{ object.date }}" required><br><br>
+            <input type="date" id="date" name="date" value="{{ object.date }}" required> <span>（YYYY-MM-DD）</span><br><br>
+
             <label for="sleep_duration">睡眠時間:</label>
-            <input type="number" id="sleep_duration" name="sleep_duration" min="0" max="12" value="{{ object.sleep_duration }}" required><br><br>
+            <input type="number" id="sleep_duration" name="sleep_duration" min="0" max="12" value="{{ object.sleep_duration }}" required> <span>（時間）</span><br><br>
+
             <label for="work_system">勤務体系:</label>
             <select id="work_system" name="work_system" required>
                 <option value="出勤" {% if object.work_system == '出勤' %}selected{% endif %}>出勤</option>
                 <option value="出張" {% if object.work_system == '出張' %}selected{% endif %}>出張</option>
                 <option value="テレワーク" {% if object.work_system == 'テレワーク' %}selected{% endif %}>テレワーク</option>
                 <option value="休み" {% if object.work_system == '休み' %}selected{% endif %}>休み</option>
-            </select><br><br>
+            </select> <span>（勤務形態を選択）</span><br><br>
+
             <label for="expenditure">支出:</label>
-            <input type="number" id="expenditure" name="expenditure" min="0" max="50" value="{{ object.expenditure }}" required><br><br>
+            <input type="number" id="expenditure" name="expenditure" min="0" max="50" value="{{ object.expenditure }}" required> <span>（千円単位）</span><br><br>
+
             <label for="overall_mood">全体の気分:</label>
-            <input type="number" id="overall_mood" name="overall_mood" min="0" max="10" value="{{ object.overall_mood }}" required><br><br>
+            <input type="number" id="overall_mood" name="overall_mood" min="0" max="10" value="{{ object.overall_mood }}" required> <span>（0〜10で評価）</span><br><br>
+
             <label for="save_in_progress">下書きとして保存しますか:</label><br>
-                    <input type="checkbox" id="save_in_progress" name="save_in_progress" value="True" {% if object.save_in_progress %}checked{% endif %}>
-                    <label for="save_in_progress">はい</label><br><br>
+            <input type="checkbox" id="save_in_progress" name="save_in_progress" value="True" {% if object.save_in_progress %}checked{% endif %}>
+            <label for="save_in_progress">はい</label> <span>（チェックすると下書きとして保存）</span><br><br>
+
             <button type="submit">保存</button>
         </form>
     </div>
@@ -71,8 +79,6 @@
 
 </main>
 
-
 {% endblock %}
 </body>
 </html>
-
