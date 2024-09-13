@@ -10,15 +10,15 @@ def signupfunc(request):
         password2 = request.POST['password2']
         
         if password1 != password2:
-            return render(request, 'signup.html', {'error': 'パスワードが一致しません。'})
+            return render(request, 'signup2.html', {'error': 'パスワードが一致しません。'})
         
         if len(password1) < 8 or not any(c.isalpha() for c in password1) or not any(c.isdigit() for c in password1):
-            return render(request, 'signup.html', {'error': 'パスワードは8文字以上で、少なくとも1つの数字と1つの文字を含む必要があります。'})
+            return render(request, 'signup2.html', {'error': 'パスワードは8文字以上で、少なくとも1つの数字と1つの文字を含む必要があります。'})
         
         try:
             User.objects.create_user(username, '', password1)
-            return render(request, 'signup.html', {'success': 'ユーザー登録が完了しました。'})
+            return render(request, 'signup2.html', {'success': 'ユーザー登録が完了しました。'})
         except IntegrityError:
-            return render(request, 'signup.html', {'error': 'このユーザー名はすでに使用されています。'})
+            return render(request, 'signup2.html', {'error': 'このユーザー名はすでに使用されています。'})
     
-    return render(request, 'signup.html',{'signinuser':'サインインしてください'})
+    return render(request, 'signup2.html',{'signinuser':'サインインしてください'})
