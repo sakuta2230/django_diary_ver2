@@ -3,6 +3,8 @@ from sampleApp.model.health_score import HealthScore
 import plotly.express as px
 import pandas as pd
 import plotly.graph_objects as go
+from django.contrib.auth.decorators import login_required  # 追加
+@login_required
 
 def display_dashboard(request):
     # データの取得
