@@ -9,19 +9,18 @@ services:
     volumes:
       - ../:/workspace
     ports:
-      - "8000:8000"  # ホストのポート8000をコンテナのポート8000にマッピング
+      - "8000:8000"
     depends_on:
       - db
-
 
   db:
     image: postgres
     volumes:
         - postgres_data:/var/lib/postgresql/data
     environment:
-        POSTGRES_USER: postgres
-        POSTGRES_PASSWORD: saku2238
-        POSTGRES_DB: djangosample
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
 
   pgadmin4:
     image: dpage/pgadmin4
@@ -30,8 +29,8 @@ services:
     volumes:
         - pgadmin4_data:/var/lib/pgadmin
     environment:
-        PGADMIN_DEFAULT_EMAIL: sakuenterforce@gmail.com
-        PGADMIN_DEFAULT_PASSWORD: saku2238
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
     depends_on:
       - db
 
