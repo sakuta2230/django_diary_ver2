@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from sampleApp.model import article1
-
+import logging
 #変更
 
 diary_logger = logging.getLogger('diary')#ロガー取得

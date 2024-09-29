@@ -3,6 +3,7 @@ from sampleApp.model.article1 import article
 from datetime import datetime
 import requests
 from afinn import Afinn
+import logging
 
 import os
 from dotenv import load_dotenv
