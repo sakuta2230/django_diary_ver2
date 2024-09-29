@@ -146,7 +146,9 @@ STATICFILES_DIRS = [
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#グラフの画像を保存するために追加
 MEDIA_URL = '/media/'
 
-
+'''
+20240929ログファイルを追加。levelはerror、もしくは日記作成、編集、削除があった際にログを残す。
+'''
 
 LOGGING = {
     'version': 1,
