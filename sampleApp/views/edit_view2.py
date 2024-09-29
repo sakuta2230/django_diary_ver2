@@ -1,6 +1,8 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from sampleApp.model.article1 import article
 
+diary_logger = logging.getLogger('diary')#ロガーを取得
+
 def edit(request, article_id):
     article_instance = get_object_or_404(article, pk=article_id)
     if request.method == 'POST':
@@ -30,6 +32,9 @@ def edit(request, article_id):
         # Debug prints after saving
         print(f"After save: save_in_progress = {save_in_progress}")
         print(f"After save: article_instance.save_in_progress = {article_instance.save_in_progress}")
+
+　　　　diary_logger.info(f"Diary entry edited: {entry.title} on {entry.date}")#ロガーに書き込む
+
         return redirect('list')
     else:
         return render(request, 'edit.html', {'object': article_instance})

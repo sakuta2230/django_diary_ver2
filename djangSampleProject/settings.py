@@ -145,3 +145,34 @@ STATICFILES_DIRS = [
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')#グラフの画像を保存するために追加
 MEDIA_URL = '/media/'
+
+
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'file': {
+            'level': 'ERROR',  # エラー用のログファイル
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'error.log'),
+        },
+        'diary_file': {
+            'level': 'INFO',  # 日記作成や編集のログレベルをINFOに設定
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'diary.log'),  # 日記用のログファイル
+        },
+    },
+    'loggers': {
+        'django': {
+            'handlers': ['file'],
+            'level': 'ERROR',
+            'propagate': True,
+        },
+        'diary': {
+            'handlers': ['diary_file'],
+            'level': 'INFO',  # INFO以上のレベルのログを記録
+            'propagate': False,
+        },
+    },
+}

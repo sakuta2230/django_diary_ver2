@@ -17,6 +17,8 @@ api_key = os.getenv("API_KEY")
 api_url = 'https://api.openweathermap.org/data/2.5/weather'
 
 
+diary_logger = logging.getLogger('diary')#ロガーを取得
+
 def create_diary(request):    
     if request.method == 'POST':
         adtitle = request.POST['title']
@@ -56,6 +58,7 @@ def create_diary(request):
             overtime_hours=overtime_hours,
             save_in_progress=save_in_progress
         )
+        diary_logger.info(f"New diary entry created: {new_entry.title} on {new_entry.date}")#ロガーに記入
         
         return redirect('list')
     else:
