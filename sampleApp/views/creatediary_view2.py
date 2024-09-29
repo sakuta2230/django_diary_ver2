@@ -59,7 +59,7 @@ def create_diary(request):
             overtime_hours=overtime_hours,
             save_in_progress=save_in_progress
         )
-        diary_logger.info(f"New diary entry created: {new_entry.title} on {new_entry.date}")#ロガーに記入
+        diary_logger.info(f"New diary entry created: {adtitle} on {addate}")  # ログに記入
         
         return redirect('list')
     else:
