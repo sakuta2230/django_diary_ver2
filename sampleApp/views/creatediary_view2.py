@@ -4,6 +4,7 @@ from datetime import datetime
 import requests
 from afinn import Afinn
 import logging
+from django.db import transaction #transaction用に追加
 
 import os
 from dotenv import load_dotenv
@@ -20,6 +21,7 @@ api_url = 'https://api.openweathermap.org/data/2.5/weather'
 
 diary_logger = logging.getLogger('diary')#ロガーを取得
 
+@transaction.atomic#transaction用に追加
 def create_diary(request):    
     if request.method == 'POST':
         adtitle = request.POST['title']
@@ -44,8 +46,8 @@ def create_diary(request):
 
         temperature = data['main']['temp']
         humidity = data['main']['humidity']
-
-        article.objects.create(
+        try:
+            article.objects.create(
             title=adtitle,
             work_text=work_text,
             private_text=private_text,
@@ -59,7 +61,10 @@ def create_diary(request):
             overtime_hours=overtime_hours,
             save_in_progress=save_in_progress
         )
-        diary_logger.info(f"New diary entry created: {adtitle} on {addate}")  # ログに記入
+            diary_logger.info(f"New diary entry created: {adtitle} on {addate}")  # ログに記入
+        except Exception as e:#transaction用に追加
+            # 例外発生時はロールバックし、エラーをログに記録
+            raise e
         
         return redirect('list')
     else:
